@@ -47,14 +47,21 @@ namespace Email_Sender.Services
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
         }
+        //Send Email With HTML template.
 
         public async Task SendWelcomeEmailAsync(WelcomeRequest request)
         {
+            //Locate the HTML file.💂‍
             string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\WelcomeTemplate.html";
+            //Open File In StreamReader
             StreamReader str = new StreamReader(FilePath);
+            //Read File and Store in string.
             string MailText = str.ReadToEnd();
+            //Close the reader.
             str.Close();
-           string mailText = MailText.Replace("[username]", request.UserName).Replace("[email]", request.ToEmail).Replace("[heading]","PRATHAMIK SCHOOL ERP");
+            //Replace text in html file with custom text.
+            string mailText = MailText.Replace("[username]", request.UserName).Replace("[email]", request.ToEmail).Replace("[heading]","PRATHAMIK SCHOOL ERP");
+            //Send Email
             MailText = mailText;
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
