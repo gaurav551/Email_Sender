@@ -6,6 +6,7 @@ namespace EmailSender
 {
 public class MailSenderController : Controller
 {
+    private const string pass= "";
     public IActionResult Index()
     {
         return View();
@@ -15,7 +16,7 @@ public class MailSenderController : Controller
         try
         {
             // Credentials
-            var credentials = new NetworkCredential("emailsenderf0f7b@gmail.com", "P@$$w0Rd");
+            var credentials = new NetworkCredential("emailsenderf0f7b@gmail.com", pass);
             // Mail message
             var mail = new MailMessage()
             {
